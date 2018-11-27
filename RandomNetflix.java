@@ -22,8 +22,7 @@ public class RandomNetflix{
             data[row++]= line.split(",");
         }
           fileScanner.close();
-     }
-     catch (Exception ex) {       //????
+     } catch (Exception ex) {       //????
           ex.printStackTrace();
       }
       return data;
@@ -42,9 +41,19 @@ public class RandomNetflix{
 }
 
 //How do we read though a file and have it store information in an array that we can use?
-
+//What loop should we use to keep gving suggestions given the conditions? (starting loop)
 System.out.println("Insert the minimum rating you would watch:");
 int rating = TextIO.getlnInt();
-for(int i = rating; i >= 1; i++){
+for(int i = rating; i >= 1; i--){
   System.out.println("Insert the required year:");
   int year = TextIO.getlnInt();
+while(ArrayPosition = year){
+  System.out.println("Would you like to watch a TV show or a movie?");
+  String type = TextIO.getlnWord();
+  if(type = movie){
+    //ArrayRating -> string that do not start with TV-
+  }
+  else{
+    //Array Rating -> string starting with TV-
+  }
+}
