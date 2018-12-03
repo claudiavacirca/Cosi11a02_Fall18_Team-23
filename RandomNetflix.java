@@ -9,14 +9,11 @@ public class RandomNetflix{
   public static String[][] readData(){
     //Title,Rating,Rating Description,Release year
     String[][] data = new String[1000][4];
+    File file = new File("Netflix_Shows.csv");
     try {
-        String DataSet = "Netflix Shows.csv";
-        File file = new File(DataSet);
-        // next create a scanner to read from the file
         Scanner fileScanner = new Scanner(file);
-
+        // next create a scanner to read from the file
         // now read the entire file and print it with line numbers:
-        int row=0;
         while (fileScanner.hasNextLine()) {
             String line = fileScanner.nextLine();
             data[row++]= line.split(",");
