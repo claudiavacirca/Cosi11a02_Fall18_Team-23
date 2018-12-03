@@ -1,59 +1,72 @@
 import java.util.Scanner;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 public class RandomNetflix{
-  public static void main(Sting[] args){
-    String[][] movieData = readData();
-    writeData(storeData);
-  }
-  public static String[][] readData(){
-    //Title,Rating,Rating Description,Release year
-    String[][] data = new String[1000][4];
-    try {
-        String DataSet = "Netflix Shows.csv";
-        File file = new File(DataSet);
-        // next create a scanner to read from the file
-        Scanner fileScanner = new Scanner(file);
+  public static void main(String[] args){
 
-        // now read the entire file and print it with line numbers:
+    String[][] movieData = readData();
+    Scanner sc = new Scanner(System.in);
+
+    System.out.println("Insert the minimum rating you would watch:");
+    int rating = sc.nextInt();
+    for(int i = 0 ; i < 1000; i++){
+  //    System.out.println("aaaaa");
+      int intRating = Integer.parseInt(movieData[i][2]);
+      for(intRating = rating; rating >= 125; rating++){
+
+        System.out.println("Insert the required year:");
+        int year = sc.nextInt();
+        int intYear = Integer.parseInt(movieData[i][3]);
+        while(intYear == year){
+
+          System.out.println("Would you like a TV, PG or R type?");
+          String inputType = sc.nextLine();
+          String type = movieData[i][1].substring(0);
+
+          if(inputType.equals("TV") && type.equals("T")){
+            String tvShow = randomMovie(movieData);
+
+          } else if(inputType.equals("PG") && type.equals("P")){
+            String pgMovie = randomMovie(movieData);
+
+          } else if(inputType.equals("R") && type.equals("R")){
+            String rMovie = randomMovie(movieData);
+          }
+          else{
+            System.out.println("I am sorry, it doesn't seem like we can help you.");
+          }
+        }
+      }
+    }
+  }
+
+  public static String[][] readData(){
+    String[][] data = new String[1000][5];
+
+    try {
+        String DataSet = "Netflix_Shows.csv";
+        File file = new File(DataSet);
+        Scanner fileScanner = new Scanner(file);
         int row=0;
         while (fileScanner.hasNextLine()) {
             String line = fileScanner.nextLine();
             data[row++]= line.split(",");
         }
           fileScanner.close();
-     } catch (Exception ex) {       //????
-          ex.printStackTrace();
+    } catch (FileNotFoundException e) {
+          System.out.println("File not found!");
       }
       return data;
-    }
-  public static void writeData(String[][] data){
-    String[] cols =
-      {"Title","Rating","Rating Description","Release Year"};
-/*    for(int i=0; i<data.length; i++){
-      System.out.printf("%5d ",i);
-      for(int j=0;j<4;j++){
-        System.out.printf("%5s ",data[i][j]);
-      }
-      System.out.println();*/
-    }
   }
-}
 
-//How do we read though a file and have it store information in an array that we can use?
-//What loop should we use to keep gving suggestions given the conditions? (starting loop)
-System.out.println("Insert the minimum rating you would watch:");
-int rating = TextIO.getlnInt();
-for(int i = rating; i >= 1; i--){
-  System.out.println("Insert the required year:");
-  int year = TextIO.getlnInt();
-while(ArrayPosition = year){
-  System.out.println("Would you like to watch a TV show or a movie?");
-  String type = TextIO.getlnWord();
-  if(type = movie){
-    //ArrayRating -> string that do not start with TV-
-  }
-  else{
-    //Array Rating -> string starting with TV-
+  public static String randomMovie(String[][] movie){
+
+    int randomMovieIndex =(int)Math.floor(Math.random()*1000);
+    String suggestion = movie[randomMovieIndex][0];
+    System.out.println(suggestion);
+
+    return suggestion;
   }
 }
