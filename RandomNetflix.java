@@ -43,6 +43,7 @@ public class RandomNetflix{
   }
 
   public static String[][] readData(){
+<<<<<<< HEAD
     String[][] data = new String[1000][5];
 
     try {
@@ -50,6 +51,15 @@ public class RandomNetflix{
         File file = new File(DataSet);
         Scanner fileScanner = new Scanner(file);
         int row=0;
+=======
+    //Title,Rating,Rating Description,Release year
+    String[][] data = new String[1000][4];
+    File file = new File("Netflix_Shows.csv");
+    try {
+        Scanner fileScanner = new Scanner(file);
+        // next create a scanner to read from the file
+        // now read the entire file and print it with line numbers:
+>>>>>>> 09af4e70fbaad2b1235fd66031c235a471727e85
         while (fileScanner.hasNextLine()) {
             String line = fileScanner.nextLine();
             data[row++]= line.split(",");
