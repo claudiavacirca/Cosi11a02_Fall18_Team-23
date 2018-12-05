@@ -8,16 +8,17 @@ public class RandomNetflix{
 
     String[][] movieData = readData();
     Scanner sc = new Scanner(System.in);
-
+//System.out.println(movieData[78][2]);
     System.out.println("Insert the minimum rating you would watch:");
     int rating = sc.nextInt();
-    for(int i = 0 ; i < 1000; i++){
-  //    System.out.println("aaaaa");
+    for(int i = 0 ; i < 999; i++){
+
       int intRating = Integer.parseInt(movieData[i][2]);
-      for(intRating = rating; rating >= 125; rating++){
+      for(intRating = rating; rating > 125; rating++){
 
         System.out.println("Insert the required year:");
         int year = sc.nextInt();
+          //System.out.println(movieData[78][2]);
         int intYear = Integer.parseInt(movieData[i][3]);
         while(intYear == year){
 
@@ -43,26 +44,23 @@ public class RandomNetflix{
   }
 
   public static String[][] readData(){
-<<<<<<< HEAD
-    String[][] data = new String[1000][5];
+
+    String[][] data = new String[999][4];
 
     try {
         String DataSet = "Netflix_Shows.csv";
         File file = new File(DataSet);
         Scanner fileScanner = new Scanner(file);
-        int row=0;
-=======
-    //Title,Rating,Rating Description,Release year
-    String[][] data = new String[1000][4];
-    File file = new File("Netflix_Shows.csv");
-    try {
-        Scanner fileScanner = new Scanner(file);
-        // next create a scanner to read from the file
-        // now read the entire file and print it with line numbers:
->>>>>>> 09af4e70fbaad2b1235fd66031c235a471727e85
+        //int row=0;
+
         while (fileScanner.hasNextLine()) {
-            String line = fileScanner.nextLine();
-            data[row++]= line.split(",");
+          String line = fileScanner.nextLine();
+          for(int row = 0; row < data.length; row ++){
+                      data[row+1] = line.split(",");
+            for(int col = 0; col < data[row].length; col++){
+              data[row][col] = fileScanner.nextLine();
+          }
+          }
         }
           fileScanner.close();
     } catch (FileNotFoundException e) {
@@ -73,8 +71,8 @@ public class RandomNetflix{
 
   public static String randomMovie(String[][] movie){
 
-    int randomMovieIndex =(int)Math.floor(Math.random()*1000);
-    String suggestion = movie[randomMovieIndex][0];
+    int randomMovieIndex =(int)(Math.random() * 999);
+    String suggestion = movie[randomMovieIndex-1][0];
     System.out.println(suggestion);
 
     return suggestion;
